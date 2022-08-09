@@ -108,13 +108,6 @@
             <version>1.2.54</version>
         </dependency>
 
-        <!-- 测试authzuser -->
-        <dependency>
-            <groupId>com.authzuser</groupId>
-            <artifactId>authzuser-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 
     <build>

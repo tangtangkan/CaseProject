@@ -1,6 +1,5 @@
 package com.ttk.controller;
 
-import com.authzuser.AuthzUserService;
 import com.ttk.entity.User;
 import com.ttk.shiro.JwtToken;
 import com.ttk.shiro.JwtUtils;
@@ -30,13 +29,10 @@ public class AdminController {
 
     private final JwtUtils jwtUtils;
 
-    private final AuthzUserService authzUserService;
-
     @Autowired
-    public AdminController (UserService userService, JwtUtils jwtUtils, AuthzUserService authzUserService) {
+    public AdminController (UserService userService, JwtUtils jwtUtils) {
         this.userService = userService;
         this.jwtUtils = jwtUtils;
-        this.authzUserService = authzUserService;
     }
 
     // @RequiresAuthentication
@@ -68,12 +64,6 @@ public class AdminController {
     public CommonResult logout() {
         // SecurityUtils.getSubject().logout();
         return CommonResult.success("退出成功", null);
-    }
-
-    @GetMapping("/authzuser")
-    public CommonResult authzuser() {
-        authzUserService.test();
-        return CommonResult.success("", null);
     }
 
     public static void main(String[] args) throws UnsupportedEncodingException {
