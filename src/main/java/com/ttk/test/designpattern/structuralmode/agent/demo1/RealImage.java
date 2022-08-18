@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.agent;
+package com.ttk.test.designpattern.structuralmode.agent.demo1;
 
 /**
  * 真实图片类
@@ -14,10 +14,10 @@ public class RealImage implements Image {
 
     @Override
     public void display() {
-        System.out.println("Displaying " + fileName);
+        System.out.println("打开 " + fileName);
     }
 
     private void loadFromDisk(String fileName) {
-        System.out.println("Loading " + fileName);
+        System.out.println("从磁盘加载 " + fileName);
     }
 }

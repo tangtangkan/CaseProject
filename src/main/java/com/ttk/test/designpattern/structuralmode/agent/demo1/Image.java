@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.agent;
+package com.ttk.test.designpattern.structuralmode.agent.demo1;
 
 /**
  * 图片接口
