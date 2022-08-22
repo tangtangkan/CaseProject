@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.agent.demo3;
+package com.ttk.test.designpattern.structuralmode.proxy.demo3;
 
 public class Client {
 

@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.agent.demo2;
+package com.ttk.test.designpattern.structuralmode.proxy.demo2;
 
 /**
  * 静态代理
@@ -19,6 +19,7 @@ public class TeacherDaoProxy implements ITeacherDao {
         // 方法
         System.out.println("开始代理...");
         target.teach();
+        System.out.println("代理提交...");
     }
 }
 

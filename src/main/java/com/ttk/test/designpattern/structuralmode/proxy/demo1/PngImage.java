@@ -1,13 +1,13 @@
-package com.ttk.test.designpattern.structuralmode.agent.demo1;
+package com.ttk.test.designpattern.structuralmode.proxy.demo1;
 
 /**
  * 真实图片类
  */
-public class RealImage implements Image {
+public class PngImage implements Image {
 
     private String fileName;
 
-    public RealImage(String fileName) {
+    public PngImage(String fileName) {
         this.fileName = fileName;
         loadFromDisk(fileName);
     }
@@ -18,6 +18,6 @@ public class RealImage implements Image {
     }
 
     private void loadFromDisk(String fileName) {
-        System.out.println("从磁盘加载 " + fileName);
+        System.out.println("从磁盘加载PNG " + fileName);
     }
 }

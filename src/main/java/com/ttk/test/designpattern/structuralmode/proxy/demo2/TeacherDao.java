@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.agent.demo2;
+package com.ttk.test.designpattern.structuralmode.proxy.demo2;
 
 /**
  * 目标对象
