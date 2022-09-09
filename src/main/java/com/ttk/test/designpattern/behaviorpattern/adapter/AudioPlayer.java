@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.adapter;
+package com.ttk.test.designpattern.behaviorpattern.adapter;
 
 /**
  * 音频播放器

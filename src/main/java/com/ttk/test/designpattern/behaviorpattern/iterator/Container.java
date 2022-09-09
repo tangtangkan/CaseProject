@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.iterator;
+package com.ttk.test.designpattern.behaviorpattern.iterator;
 
 /**
  * 容器接口

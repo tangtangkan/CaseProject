@@ -1,4 +1,4 @@
-package com.ttk.test.designpattern.structuralmode.adapter;
+package com.ttk.test.designpattern.behaviorpattern.adapter;
 
 /**
  * 媒体适配器
