@@ -1,9 +1,12 @@
-package com.ttk.test.im;
+package com.ttk.test.im.client;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClientThread implements Runnable{
+/**
+ * 客户端子线程，每当接收和发送消息，会开辟线程用来同步
+ */
+public class ClientThread implements Runnable {
 
     @Override
     public void run() {
@@ -15,8 +18,7 @@ public class ClientThread implements Runnable{
             th_1.start();
             Thread th_2 = new Thread(new ClientSend(socket));
             th_2.start();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
