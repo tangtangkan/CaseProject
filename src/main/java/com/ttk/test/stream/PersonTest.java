@@ -49,23 +49,20 @@ public class PersonTest {
         // 初始化班级学生数据
         List<SchoolClass> schoolClassList = initSchoolClassData();
 
-        // 嵌套list取属性平铺（班级中学员名称平铺）
-        List<Person> personList1 = schoolClassList.stream()
+        // 嵌套list平铺对象（班级中学员对象平铺）
+        List<Person> classPersonList = schoolClassList.stream()
                 .filter(school -> !CollectionUtils.isEmpty(school.getPersonList()))
                 .map(SchoolClass::getPersonList)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
 
+        // 嵌套list取属性平铺（班级中学员ID平铺）
         List<Integer> idList = schoolClassList.stream()
                 .filter(school -> !CollectionUtils.isEmpty(school.getPersonList()))
                 .map(SchoolClass::getPersonList)
                 .flatMap(Collection::stream)
                 .map(Person::getId)
                 .collect(Collectors.toList());
-        for (Integer id : idList) {
-            System.out.println(id);
-        }
-
     }
 
     /**
