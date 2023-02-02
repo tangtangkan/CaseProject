@@ -33,6 +33,18 @@ public class CommonResult<T> implements Serializable {
     }
 
     /**
+     * 成功：无返回值
+     * @param message
+     * @param <T>
+     * @return
+     */
+    public static <T> CommonResult<T> success(String message) {
+        CommonResult commonResult = new CommonResult(message);
+        commonResult.setCode(200);
+        return commonResult;
+    }
+
+    /**
      * 失败
      * @param message
      * @param data

@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+box "三次握手"
+client -> server: syn = 1 seq = x
+note left
+第一次握手
+客户端发送syn报文, 发送序号为X, 进入SYN_SEND状态
+end note
+
+server --> client: syn = 1 ack = x+1 seq = y
+note right
+第二次握手
+服务器收到syn包, 确认客户的SYN（ack=x+1）, 服务器向客户端发送syn+ack包, 服务器进入SYN_RECV状态
+end note
+
+client -> server: ack = y + 1 seq = z
+note left
+第三次握手
+客户端收到服务器的syn＋ack包, 向服务器发送确认包ack(ack=y+1), 客户端和服务器进入ESTABLISHED状态
+end note
+end box
+
+@enduml
