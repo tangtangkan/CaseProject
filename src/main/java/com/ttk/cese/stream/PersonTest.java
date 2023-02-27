@@ -43,6 +43,9 @@ public class PersonTest {
         // 排序, 降序
         // List<Person> list2 = personList.stream().sorted(Comparator.comparing(Person::getAge).reversed()).collect(Collectors.toList());
 
+        // 转String
+        List<String> idStrList = personList.stream().map(item -> String.valueOf(item.getId())).collect(Collectors.toList());
+
 
 
 
