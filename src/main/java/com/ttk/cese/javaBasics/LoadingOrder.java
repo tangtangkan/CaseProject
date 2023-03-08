@@ -1,6 +1,7 @@
 package com.ttk.cese.javaBasics;
 
 /**
+ * 加载顺序
  * Java多态--子类对象指向父类引用
  * https://blog.csdn.net/wenqi1992/article/details/125273513
  */
