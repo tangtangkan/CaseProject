@@ -11,7 +11,6 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,6 +51,30 @@ public class UserController {
     @PostMapping ("/delUser")
     public CommonResult<Integer> delUser(@RequestBody Map<String, Long> map) {
         return CommonResult.success("请求成功", userService.delUser(map.get("uid")));
+    }
+
+    @PostMapping ("/addOne")
+    public CommonResult addOne() {
+        userService.add1();
+        userService.add2();
+        userService.add3();
+        return CommonResult.success("请求成功");
+    }
+
+    @PostMapping ("/addTwo")
+    public CommonResult addTwo() {
+        userService.add4();
+        return CommonResult.success("请求成功");
+    }
+
+    @PostMapping ("/addThree")
+    public CommonResult addThree() {
+        userService.add7();
+
+        // userService.add8();
+        // userService.add10();
+        // userService.add9();
+        return CommonResult.success("请求成功");
     }
 
 }

@@ -16,6 +16,8 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
 
     @Autowired
-    public UserServiceImpl (UserDao userDao) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -73,5 +75,87 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer delUser(Long uid) {
         return userDao.deleteById(uid);
+    }
+
+    @Override
+    @Transactional
+    public void add1() {
+        User user = new User();
+        user.setUserName("张三");
+        userDao.insert(user);
+    }
+
+    @Override
+    @Transactional
+    public void add2() {
+        User user = new User();
+        user.setUserName("李四");
+        userDao.insert(user);
+    }
+
+    @Override
+    @Transactional
+    public void add3() {
+        User user = new User();
+        user.setUserName("王五");
+        userDao.insert(user);
+        int a = 1/0;
+    }
+
+    @Override
+    @Transactional
+    public void add4() {
+        add5();
+
+        add6();
+    }
+
+    @Override
+    public void add5() {
+        User user = new User();
+        user.setUserName("刘七");
+        userDao.insert(user);
+    }
+
+    @Override
+    public void add6() {
+        User user = new User();
+        user.setUserName("徐八");
+        userDao.insert(user);
+        int a = 1/0;
+    }
+
+    @Override
+    // @Transactional
+    public void add7() {
+        add8();
+        add9();
+        add10();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void add8() {
+        User user = new User();
+        user.setUserName("8");
+        userDao.insert(user);
+    }
+
+    @Override
+    @Transactional
+    public void add9() {
+        User user = new User();
+        user.setUserName("9");
+        userDao.insert(user);
+        int a = 1/0;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    // @Transactional
+    public void add10() {
+        User user = new User();
+        user.setUserName("10");
+        userDao.insert(user);
     }
 }
