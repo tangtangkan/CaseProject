@@ -27,8 +27,8 @@ mybatis:
 shiro-redis:
   enabled: true
   redis-manager:
-    host: 101.35.192.249:6380
-    password: redis
+    host: 117.50.192.235:7379
+    password: 123456
 
 markerhub:
   jwt:
