@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,9 +45,16 @@ public class PersonTest {
         // List<Person> list2 = personList.stream().sorted(Comparator.comparing(Person::getAge).reversed()).collect(Collectors.toList());
 
         // 转String
-        List<String> idStrList = personList.stream().map(item -> String.valueOf(item.getId())).collect(Collectors.toList());
+        // List<String> idStrList = personList.stream().map(item -> String.valueOf(item.getId())).collect(Collectors.toList());
 
+        // 根据age排序，如果age相同，则根据id排序，默认升序，如果age或id为空的话会报空指针
+        // List<Person> pList1 = personList.stream().sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getId)).collect(Collectors.toList());
 
+        // 解决排序为空报错，使用Comparator.nullsFirst()（最小）、Comparator.nullsLast()（最大），会将空值视为最小或最大值
+        List<Person> pList2 = personList.stream()
+                .sorted(Comparator.comparing(Person::getAge, Comparator.nullsFirst(Integer::compareTo))
+                .thenComparing(Person::getId, Comparator.nullsLast(Integer::compareTo)))
+                .collect(Collectors.toList());
 
 
         // 初始化班级学生数据
@@ -76,11 +84,11 @@ public class PersonTest {
 
         List<Person> personList = Lists.newArrayList();
 
-        Person person1 = new Person(1, "张三", 12, "一班");
-        Person person2 = new Person(2, "李四", 11, "二班");
-        Person person3 = new Person(3, "王五", 14, "三班");
-        Person person4 = new Person(4, "赵六", 15, "二班");
-        Person person5 = new Person(1, "孙七", 10, "一班");
+        Person person1 = new Person(null, "张三", 18, "一班");
+        Person person2 = new Person(3, "李四", 17, "二班");
+        Person person3 = new Person(4, "王五", null, "三班");
+        Person person4 = new Person(5, "赵六", 15, "二班");
+        Person person5 = new Person(6, "孙七", 14, "一班");
 
         personList.add(person1);
         personList.add(person2);
