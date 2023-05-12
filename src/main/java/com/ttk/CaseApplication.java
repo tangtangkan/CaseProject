@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 // 开启异步配置
 @EnableAsync
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 // 这样就不用在每个dao加入@Mapper注释了
 @MapperScan("com.ttk.dao")
+// @EnableWebMvc 使用此注解, swagger地址打不开
 public class CaseApplication {
 
     public static void main(String[] args) {
