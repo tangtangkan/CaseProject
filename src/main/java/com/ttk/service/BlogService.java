@@ -13,4 +13,19 @@ public interface BlogService {
 
     Blog getBlogInfo(Long id);
 
+    /**
+     * 不加@Transactional注解
+     */
+    void addBlog1(Blog blog);
+
+    /**
+     * @Transactional
+     */
+    void addBlog2(Blog blog);
+
+    /**
+     * @Transactional(propagation = Propagation.REQUIRES_NEW)
+     */
+    void addBlog3(Blog blog);
+
 }

@@ -5,10 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ttk.dao.UserDao;
+import com.ttk.entity.Blog;
+import com.ttk.entity.MessageRecord;
 import com.ttk.entity.User;
 import com.ttk.entity.request.AddUserRequest;
 import com.ttk.entity.request.PageParams;
 import com.ttk.entity.request.UserRequest;
+import com.ttk.service.BlogService;
+import com.ttk.service.MessageRecordService;
 import com.ttk.service.UserService;
 import com.ttk.shiro.AccountProfile;
 import com.ttk.utils.PageResult;
@@ -16,7 +20,6 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -25,9 +28,15 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
 
+    private final BlogService blogService;
+
+    private final MessageRecordService messageRecordService;
+
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, BlogService blogService, MessageRecordService messageRecordService) {
         this.userDao = userDao;
+        this.blogService = blogService;
+        this.messageRecordService = messageRecordService;
     }
 
     @Override
@@ -79,83 +88,110 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void add1() {
-        User user = new User();
-        user.setUserName("张三");
-        userDao.insert(user);
+    public void addOne() {
+        Blog blog = new Blog();
+        blog.setTitle("标题");
+        blog.setCreateId(10l);
+
+        // 异常
+        blog.setCreateId(1l);
+
+        blogService.addBlog2(blog);
+
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setFromUser("用户1");
+        messageRecord.setRoomId(20l);
+        messageRecordService.addMessageRecord2(messageRecord);
+
     }
 
     @Override
     @Transactional
-    public void add2() {
-        User user = new User();
-        user.setUserName("李四");
-        userDao.insert(user);
+    public void addTwo() {
+        Blog blog = new Blog();
+        blog.setTitle("标题");
+        blog.setCreateId(10l);
+
+        // 异常
+        blog.setCreateId(1l);
+
+        blogService.addBlog3(blog);
+
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setFromUser("用户1");
+        messageRecord.setRoomId(20l);
+        messageRecordService.addMessageRecord2(messageRecord);
     }
 
     @Override
     @Transactional
-    public void add3() {
-        User user = new User();
-        user.setUserName("王五");
-        userDao.insert(user);
-        int a = 1/0;
+    public void addThree() {
+        Blog blog = new Blog();
+        blog.setTitle("标题");
+        blog.setCreateId(10l);
+        blogService.addBlog3(blog);
+
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setFromUser("用户1");
+        messageRecord.setRoomId(20l);
+
+        // 异常
+        messageRecord.setRoomId(1l);
+
+        messageRecordService.addMessageRecord2(messageRecord);
     }
 
     @Override
     @Transactional
-    public void add4() {
-        add5();
+    public void addFour() {
+        Blog blog = new Blog();
+        blog.setTitle("标题");
+        blog.setCreateId(10l);
+        blogService.addBlog3(blog);
 
-        add6();
-    }
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setFromUser("用户1");
+        messageRecord.setRoomId(20l);
 
-    @Override
-    public void add5() {
-        User user = new User();
-        user.setUserName("刘七");
-        userDao.insert(user);
-    }
+        // 异常
+        messageRecord.setRoomId(1l);
 
-    @Override
-    public void add6() {
-        User user = new User();
-        user.setUserName("徐八");
-        userDao.insert(user);
-        int a = 1/0;
-    }
-
-    @Override
-    // @Transactional
-    public void add7() {
-        add8();
-        add9();
-        add10();
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void add8() {
-        User user = new User();
-        user.setUserName("8");
-        userDao.insert(user);
+        messageRecordService.addMessageRecord3(messageRecord);
     }
 
     @Override
     @Transactional
-    public void add9() {
-        User user = new User();
-        user.setUserName("9");
-        userDao.insert(user);
-        int a = 1/0;
+    public void addFive() {
+        Blog blog = new Blog();
+        blog.setTitle("标题");
+        blog.setCreateId(10l);
+
+        // 异常
+        blog.setCreateId(1l);
+
+        blogService.addBlog3(blog);
+
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setFromUser("用户1");
+        messageRecord.setRoomId(20l);
+        messageRecordService.addMessageRecord3(messageRecord);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    // @Transactional
-    public void add10() {
-        User user = new User();
-        user.setUserName("10");
-        userDao.insert(user);
+    @Transactional
+    public void addSix() {
+        Blog blog = new Blog();
+        blog.setTitle("标题");
+        blog.setCreateId(10l);
+        blogService.addBlog2(blog);
+
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setFromUser("用户1");
+        messageRecord.setRoomId(20l);
+
+        // 异常
+        messageRecord.setRoomId(1l);
+
+        messageRecordService.addMessageRecord2(messageRecord);
     }
 }

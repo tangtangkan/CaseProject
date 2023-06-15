@@ -26,24 +26,16 @@ public interface UserService {
 
     Integer delUser(Long uid);
 
-    void add1();
+    void addOne();
 
-    void add2();
+    void addTwo();
 
-    void add3();
+    void addThree();
 
-    void add4();
+    void addFour();
 
-    void add5();
+    void addFive();
 
-    void add6();
-
-    void add7();
-
-    void add8();
-
-    void add9();
-
-    void add10();
+    void addSix();
 
 }

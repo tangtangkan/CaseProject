@@ -14,6 +14,8 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -66,5 +68,31 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlogInfo(Long id) {
         return blogDao.selectById(id);
+    }
+
+    @Override
+    public void addBlog1(Blog blog) {
+        blogDao.insert(blog);
+        if ("1".equals(blog.getCreateId().toString())) {
+            int i = 10 / 0;
+        }
+    }
+
+    @Override
+    @Transactional
+    public void addBlog2(Blog blog) {
+        blogDao.insert(blog);
+        if ("1".equals(blog.getCreateId().toString())) {
+            int i = 10 / 0;
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addBlog3(Blog blog) {
+        blogDao.insert(blog);
+        if ("1".equals(blog.getCreateId().toString())) {
+            int i = 10 / 0;
+        }
     }
 }

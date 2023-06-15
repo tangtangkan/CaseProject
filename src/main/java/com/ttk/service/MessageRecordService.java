@@ -13,4 +13,19 @@ public interface MessageRecordService extends IService<MessageRecord> {
 
     List<MessageRecord> getMessageRecordByRoomId(String roomId);
 
+    /**
+     * 不加@Transactional注解
+     */
+    void addMessageRecord1(MessageRecord messageRecord);
+
+    /**
+     * @Transactional
+     */
+    void addMessageRecord2(MessageRecord messageRecord);
+
+    /**
+     * @Transactional(propagation = Propagation.REQUIRES_NEW)
+     */
+    void addMessageRecord3(MessageRecord messageRecord);
+
 }

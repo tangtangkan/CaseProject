@@ -7,6 +7,8 @@ import com.ttk.entity.MessageRecord;
 import com.ttk.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,5 +31,31 @@ public class MessageRecordServiceImpl extends ServiceImpl<MessageRecordMapper, M
         QueryWrapper queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("room_id", roomId);
         return messageRecordMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public void addMessageRecord1(MessageRecord messageRecord) {
+        messageRecordMapper.insert(messageRecord);
+        if ("1".equals(messageRecord.getRoomId().toString())) {
+            int i = 10 / 0;
+        }
+    }
+
+    @Override
+    @Transactional
+    public void addMessageRecord2(MessageRecord messageRecord) {
+        messageRecordMapper.insert(messageRecord);
+        if ("1".equals(messageRecord.getRoomId().toString())) {
+            int i = 10 / 0;
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addMessageRecord3(MessageRecord messageRecord) {
+        messageRecordMapper.insert(messageRecord);
+        if ("1".equals(messageRecord.getRoomId().toString())) {
+            int i = 10 / 0;
+        }
     }
 }

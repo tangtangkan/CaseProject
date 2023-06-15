@@ -53,27 +53,65 @@ public class UserController {
         return CommonResult.success("请求成功", userService.delUser(map.get("uid")));
     }
 
+    /**
+     * 全部回滚（第一个异常后代码不会往下执行）
+     * @return
+     */
     @PostMapping ("/addOne")
     public CommonResult addOne() {
-        userService.add1();
-        userService.add2();
-        userService.add3();
+        userService.addOne();
         return CommonResult.success("请求成功");
     }
 
+    /**
+     * 全部回滚（第一个异常后代码不会往下执行）
+     * @return
+     */
     @PostMapping ("/addTwo")
     public CommonResult addTwo() {
-        userService.add4();
+        userService.addTwo();
         return CommonResult.success("请求成功");
     }
 
+    /**
+     * blog保存成功（记录日志开了一个新的事务，在执行完毕之后，已经提交）
+     * message_record失败（回滚，因为blog保存是新开的事务，所以不会回滚）
+     * @return
+     */
     @PostMapping ("/addThree")
     public CommonResult addThree() {
-        userService.add7();
+        userService.addThree();
+        return CommonResult.success("请求成功");
+    }
 
-        // userService.add8();
-        // userService.add10();
-        // userService.add9();
+    /**
+     * blog保存成功
+     * message_record失败
+     * @return
+     */
+    @PostMapping ("/addFour")
+    public CommonResult addFour() {
+        userService.addFour();
+        return CommonResult.success("请求成功");
+    }
+
+    /**
+     * 全部回滚（第一个异常后代码不会往下执行）
+     * @return
+     */
+    @PostMapping ("/addFive")
+    public CommonResult addFive() {
+        userService.addFive();
+        return CommonResult.success("请求成功");
+    }
+
+    /**
+     * 全部回滚（使用的是同一个事务）
+     * @return
+     */
+    @PostMapping ("/addSix")
+    public CommonResult addSix() {
+        userService.addSix();
         return CommonResult.success("请求成功");
     }
 
