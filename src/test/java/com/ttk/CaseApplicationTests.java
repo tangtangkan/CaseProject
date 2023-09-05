@@ -1,8 +1,8 @@
 package com.ttk;
 
-import com.ttk.cese.bean.Cat;
-import com.ttk.cese.bean.Dog;
-import com.ttk.cese.bean.Pig;
+import com.ttk.examplecase.bean.Cat;
+import com.ttk.examplecase.bean.Dog;
+import com.ttk.examplecase.bean.Pig;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;

@@ -1,7 +1,7 @@
 package com.ttk.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ttk.cese.thread.async.AsyncTestService;
+import com.ttk.examplecase.thread.async.AsyncTestService;
 import com.ttk.dao.MessageRecordMapper;
 import com.ttk.entity.MessageRecord;
 import com.ttk.service.AsyncService;

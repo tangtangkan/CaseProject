@@ -4,24 +4,24 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <!--  五步骤  -->
-<!--    <bean id="dog" class="com.ttk.cese.bean.Dog" init-method="myInit" destroy-method="myDestroy">-->
+<!--    <bean id="dog" class="com.ttk.examplecase.bean.Dog" init-method="myInit" destroy-method="myDestroy">-->
 <!--        <property name="name" value="张三"></property>-->
 <!--    </bean>-->
 
 <!--  七步骤  -->
-<!--    <bean id="cat" class="com.ttk.cese.bean.Cat" init-method="myInit" destroy-method="myDestroy">-->
+<!--    <bean id="cat" class="com.ttk.examplecase.bean.Cat" init-method="myInit" destroy-method="myDestroy">-->
 <!--        <property name="name" value="李四"></property>-->
 <!--    </bean>-->
 
-<!--    <bean id="catPostProcessor" class="com.ttk.cese.bean.CatPostProcessor">-->
+<!--    <bean id="catPostProcessor" class="com.ttk.examplecase.bean.CatPostProcessor">-->
 <!--    </bean>-->
 
     <!--  十步骤  -->
-    <bean id="pig" class="com.ttk.cese.bean.Pig" init-method="myInit" destroy-method="myDestroy">
+    <bean id="pig" class="com.ttk.examplecase.bean.Pig" init-method="myInit" destroy-method="myDestroy">
         <property name="name" value="王五"></property>
     </bean>
 
-    <bean id="pigPostProcessor" class="com.ttk.cese.bean.PigPostProcessor">
+    <bean id="pigPostProcessor" class="com.ttk.examplecase.bean.PigPostProcessor">
     </bean>
 
 </beans>
