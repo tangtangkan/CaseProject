@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 
 /**
  * 父子线程如何共享数据
- * 1. InteritableTest1解决方案1
- *    1.1 在每次提交线程时，重新设置local的值
+ *
+ * InteritableTest1问题解决方案一：在每次提交线程时，重新设置local的值
  */
 public class InteritableTest2 {
 
@@ -33,6 +33,9 @@ public class InteritableTest2 {
             // 父线程修改local的值
             local.set("天王老子" + i);
         }
+
+        // 关闭线程池并等待任务完成
+        poolExecutor.shutdown();
     }
 
     class Task implements Runnable {
