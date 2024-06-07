@@ -8,27 +8,39 @@ import java.util.concurrent.Executors;
  * 父子线程如何共享数据
  *
  * 方案一： 使用InheritableThreadLocal
- *    问题：循环三次，每次打印local的值是相同的
- *    原因：InheritableThreadLocal 工作原理：当一个新线程被创建时，它会从父线程继承InheritableThreadLocal的值，通过线程初始化时的一个副本来实现的
- *         线程池中的线程是复用的，所以一个线程在完成任务后，不会马上销毁，而是继续执行新的任务，所以不会重新继承父线程中的值
- *         代码执行过程：首先main主线程设置InheritableThreadLocal的初始值，然后提交任务到子线程，然后主线程修改local的值，在子线程中打印的还是初始值
- *    注：当线程池大小为1，循环3次，每次是使用相同的线程执行，才会使打印的值相同
- *        如果程池大小大于循环次数，那么每次使用的是新的线程，就不会有这个问题
+ *
+ *    问题：对于InteritableTest1，现将线程池的大小改为3，每次都会打印出最新的值
+ *
+ *    代码执行过程：
+ *          1. 父线程设置local的值为天王老子
+ *          2. 父线程开启一个循环，循环3次
+ *              第一次循环：
+ *                  线程池中第一个线程继承父线程的local值天王老子
+ *                  父线程修改local的值为天王老子1
+ *              第二次循环：
+ *                  线程池中第二个线程继承父线程的local值天王老子1
+ *                  父线程修改local的值为天王老子2
+ *              第二次循环：
+ *                  线程池中第三个线程继承父线程的local值天王老子2
+ *                  父线程修改local的值为天王老子3
+ *
  */
-public class InteritableTest1 {
+public class InheritableTest2 {
 
+    // 初始化一个InheritableThreadLocal
     static ThreadLocal<String> local = new InheritableThreadLocal<>();
 
     // 初始化一个长度为1 的线程池
-    static ExecutorService poolExecutor = Executors.newFixedThreadPool(1);
+    static ExecutorService poolExecutor = Executors.newFixedThreadPool(3);
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        InteritableTest1 test = new InteritableTest1();
+        InheritableTest2 test = new InheritableTest2();
         test.test();
     }
 
     // 循环3次
     private void test() {
+
         // 父线程设置一个初始值
         local.set("天王老子");
 
